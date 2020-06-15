@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 	  {% if title %}
@@ -18,6 +22,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
 
 
 
@@ -68,14 +74,33 @@
 
 	<div class="container">
 		
-			<div> Microblog: <a href="/index">Home</a></div>
-	<hr>
-	{% block content %} {% endblock %}
+		<div> Microblog: 
+            <ul>
+                <li><a style="list-style-type: none;" href="{{ url_for('index') }}">Home</a></li>
+                <li><a style="list-style-type: none;" href="{{ url_for('about') }}">About</a></li>
+            </ul></div>
 
-
-
-
+	       {% block content %} {% endblock %}
 	</div>
+     <br>
+
+            {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+               
+
+                {% endif %}
+
+            {% endwith %}
+
+        <br>
+        <hr>
 
 
 
