@@ -7,6 +7,12 @@ from app.forms import LoginForm
 def about():
 	return render_template('about.html')
 
+
+
+@app.route('/java')
+def java():
+	return render_template('java.html', title='Java')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	form = LoginForm()
@@ -18,8 +24,8 @@ def login():
 	return render_template('login.html', title='Login', form=form)
 
 @app.route('/')
-@app.route('/index')
-def index():
+@app.route('/home')
+def home():
 	user = {'username': 'Mike'}
 	posts = [
 
@@ -38,4 +44,10 @@ def index():
 
 
 	]
-	return render_template('index.html', title='Home', user=user, posts=posts)
+	return render_template('home.html', title='Home', user=user, posts=posts)
+
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
