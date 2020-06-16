@@ -3,7 +3,6 @@
 <head>
 
 
-
  <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,21 +13,29 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
 
-    <div id="message">
-            <div style="padding: 5px;">
-                <div id="inner-message" class="alert alert-error">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    test error message
-                </div>
-            </div>
-    </div>
-
     {% if title %}
         <title>Flask Blog - {{ title }}</title>
     {% else %}
         <title>Flask Blog</title>
     {% endif %}
 
+
+
+
+            {% with messages = get_flashed_messages() %}
+
+                {% if messages %}
+
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+               
+
+                {% endif %}
+
+            {% endwith %}
 
 
 
@@ -77,12 +84,8 @@
     <div style="positon: absolute; top: 30%; text-decoration:none; left: 20%">
 	<ul class="nav navbar-nav navbar-right">
        
-	    <a style="text-decoration: none;" href="{{ url_for('login')}}">
-              <button type="button" class="btn btn-outline-primary">Login</button>
-
-        </a>
-
-
+    
+       <a href="{{ url_for('login') }}" class="btn btn-outline-success" role="button">Login </a>
 
 	</ul>
 	</div>
@@ -110,21 +113,6 @@
 	       {% block content %} {% endblock %}
 	</div>
      <br>
-
-            {% with messages = get_flashed_messages() %}
-
-                {% if messages %}
-
-                    <ul>
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-               
-
-                {% endif %}
-
-            {% endwith %}
 
         <br>
              <!-- Optional JavaScript -->

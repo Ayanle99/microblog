@@ -19,7 +19,7 @@ def login():
 
 	if form.validate_on_submit():
 		flash("login successful", 'success')
-		return redirect('/index')
+		return redirect('/home')
 
 	return render_template('login.html', title='Login', form=form)
 

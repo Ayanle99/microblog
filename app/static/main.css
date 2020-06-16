@@ -1,5 +1,11 @@
-.alert{
-	text-align: center;
-	background-color: yellow;
+#inner-message  {
 	background: red;
+	text-align: center;
+	color: #fff;
+	font-size: 20px;
+}
+
+.mess{
+	background: yellow;
+	background-color: red;
 }
