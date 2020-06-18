@@ -1,126 +1,147 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
 
- <!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
-
-    {% if title %}
-        <title>Flask Blog - {{ title }}</title>
-    {% else %}
-        <title>Flask Blog</title>
-    {% endif %}
-
+        {% if title %}
+        <title>{{ title }} - Microblog</title>
+        {% else %}
+        <title>Welcome to Microblog</title>
+        {% endif %}
 
 
-
-            {% with messages = get_flashed_messages() %}
-
-                {% if messages %}
-
-                    <ul>
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-               
-
-                {% endif %}
-
-            {% endwith %}
-
-
-
+</head>
 
 <body>
 
-	 <!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
+    <!-- Navigation bar -->
+
+    <nav class="navbar navbar-light navbar-expand-md bg-light justify-content-center">
+        <a href="/" class="navbar-brand mr-0">MicroBlog</a>
+        <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
+            <ul class="navbar-nav mx-auto text-center">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home<span class="sr-only">Home</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('java') }}">Java</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
+                <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-facebook mr-1"></i></a> </li>
+                <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-twitter"></i></a> </li>
+            </ul>
+        </div>
+
+        <div style="positon: absolute; top: 30%; text-decoration:none; left: 20%">
+            <ul class="nav navbar-nav navbar-right">
 
 
+                <a href="{{ url_for('login') }}" class="btn btn-outline-success" role="button">Login </a>
 
-<!-- Navigation bar -->
+            </ul>
 
-<nav class="navbar navbar-light navbar-expand-md bg-light justify-content-center">
-    <a href="/" class="navbar-brand mr-0">MicroBlog</a>
-    <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
-        <ul class="navbar-nav mx-auto text-center">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url_for('home') }}">Home<span class="sr-only">Home</span></a>
-            </li>
-
-             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('java') }}">Java</a>
-            </li>
-           
-            <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('about') }}">About</a>
-            </li>
-
-        </ul>
-        <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
-            <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-facebook mr-1"></i></a> </li>
-            <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-twitter"></i></a> </li>
-        </ul>
-    </div>
-
-    <div style="positon: absolute; top: 30%; text-decoration:none; left: 20%">
-	<ul class="nav navbar-nav navbar-right">
-       
-    
-       <a href="{{ url_for('login') }}" class="btn btn-outline-success" role="button">Login </a>
-
-	</ul>
-	</div>
-
-
-
-</nav>
-
-<!-- End of navigation bar -->
-
-	
-
-
-	<div class="container">
-		
-		<div> Microblog: <a style="margin-left: 10px; text-decoration: none; list-style: none;" href="{{ url_for('home') }}">Home</a>
-            <a style="text-decoration: none; list-style: none; margin-left: 10px;" href="{{ url_for('about')}}">About</a>
-           
 
         </div>
+
+
+
+    </nav>
+
+    <!-- End of navigation bar -->
+
+    <div class="container">
+
+     <!--    <div> Microblog: 
+                <a style="margin-left: 10px; text-decoration: none; list-style: none;"
+                href="{{ url_for('home') }}">Home</a>
+                <a style="text-decoration: none; list-style: none; margin-left: 10px;"
+                href="{{ url_for('about')}}">About</a>
+                <a style="text-decoration: none; list-style: none; margin-left: 10px;"
+                href="{{ url_for('login')}}">Login</a>
+
+        </div> -->
+
+           <div>
+              Microblog:
+              <a href="{{ url_for('home') }}">Home</a>
+              {% if current_user.is_anonymous %}
+              <a href="{{ url_for('login') }}">Login</a>
+              {% else %}
+              <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+              <a href="{{ url_for('logout') }}">Logout</a>
+              {% endif %}
+            </div>
 
         <br>
         <hr style="background-color: #000;">
 
-	       {% block content %} {% endblock %}
-	</div>
-     <br>
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
 
-        <br>
-             <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        {% block content %} {% endblock %}
+    </div>
+    <br>
+
+    <br>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+       
 
 
 </body>
+
 </html>

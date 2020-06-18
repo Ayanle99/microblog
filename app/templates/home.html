@@ -3,15 +3,26 @@
 
 {% block content %}
 
+		
+	<!-- 	// CardView home
 
-    <h1>Hi, {{user.username}}!</h1>
-    {% for post in posts %}
+		<div class="card" style="width: 18rem;">
+		  <img class="card-img-top"src="{{ url_for('static', filename='sawir.png') }}" alt="Card image cap">
+		  <div class="card-body">
+		    <h5 class="card-title">Hi, {{ current_user.username }}!</h5>
+		     {% for post in posts %}
+		    <p class="card-text">{{ post.author.username }} says: <b>{{ post.body }}</p>
+		    <a href="#" class="btn btn-primary">Go somewhere</a>
+		     {% endfor %}
+		  </div>
+		</div>
+			 -->
 
-            <div>
-                <p>{{ post.author.username }}  says: <b> {{ post.body }}</b></p>
-            </div>
-
-    {% endfor %}
-
+		 <h3>Hi, {{ current_user.username }}!</h3>
+	    {% for post in posts %}
+	    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+	    {% endfor %}
+  
+   
 
 {% endblock %}
